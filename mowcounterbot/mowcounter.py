@@ -1,5 +1,6 @@
 from .base import MetafetishModuleBase
 import redis
+import cgi
 
 
 class MowCounterTransactions(object):
@@ -42,6 +43,11 @@ class MowCounterTransactions(object):
 
 class MowRedisTransactions(MowCounterTransactions):
     def __init__(self):
+        self.redis = redis.StrictRedis(host='pub-redis-13292.us-east-1-4.6.ec2.redislabs.com',
+                                       port=13292,
+                                       password='stupidbots',
+                                       db=0,
+                                       decode_responses=True)
         # self.redis = redis.StrictRedis(host='localhost',
         #                                db=0,
         #                                decode_responses=True)
