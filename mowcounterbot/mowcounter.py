@@ -245,12 +245,12 @@ class MowCounter(MetafetishModuleBase):
         msg = "<b>Top 10 Count for Group '%s':</b>\n\n" % update.message.chat.title
         i = 1
         for u in group_top10:
-            msg += "<b>%d.</b> " + cgi.escape("%s - %s\n" % (i, u["name"], u["score"]))
+            msg += ("<b>%d.</b> " % (i)) + cgi.escape("%s - %s\n" % (u["name"], u["score"]))
             i += 1
         msg += "\n<b>Top 10 Count Globally:</b>\n\n"
         i = 1
         for u in global_top10:
-            msg += "<b>%d.</b> " + cgi.escape("%s - %s\n" % (i, u["name"], u["score"]))
+            msg += ("<b>%d.</b> " % (i)) + cgi.escape("%s - %s\n" % (u["name"], u["score"]))
             i += 1
         bot.sendMessage(update.message.chat.id,
                         text=msg,
