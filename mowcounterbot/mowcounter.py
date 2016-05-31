@@ -204,10 +204,12 @@ class MowCounter(MetafetishModuleBase):
         user = update.message.from_user
         chat = update.message.chat
         mows = 0
+        woms = 0
         # The API tests for text as either text or '', not None. God damnit.
         if len(update.message.text) is not 0:
             # count mows. Maximum one mow per message
             mows = 1 if update.message.text.lower().count("mow") else 0
+            woms = 1 if update.messate.text.lower().count("wom") else 0
         elif update.message.sticker is not None:
             sticker = update.message.sticker
             # Make sure we have the sticker and it's accepted
@@ -215,6 +217,7 @@ class MowCounter(MetafetishModuleBase):
             if value is None:
                 return
             mows = value
+        mows -= woms
         if mows is 0:
             return
         self.store.update_mow_count(user.id, user.username, user.first_name,
